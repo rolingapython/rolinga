@@ -1,20 +1,74 @@
-/* Este es el estilo general de la web Rolinga */
-body {
+/* Reset de estilos para el navegador */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-
-header{
-    background-color: #0d47a1;
-    color: white;    
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
 }
 
-header a {
-    color: white;
+header {
+    background-color: #0055a4; 
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
 }
 
-footer{
-    background-color: #bbdefb;
-    color: white;    
+.menu img {
+    display: block;
+    margin: 0 auto;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+#banner {
+    background-color: #0055a4; 
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+#search {
+    background-color: #0077cc; 
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer {
+    background-color: #0055a4; 
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
 }
