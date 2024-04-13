@@ -1,1 +1,14 @@
 /* Este es el estilo general de la web Rolinga */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: #0d47a1;
+    color: white;    
+}
+
+header a {
+    color: white;
+}
