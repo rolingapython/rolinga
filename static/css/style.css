@@ -89,23 +89,33 @@ footer a:hover {
 }
 
 /*INICIO DE CONFIGURACION DE LAS CARDS*/
+.container {
+    display: flex; /* Utiliza Flexbox para distribuir las tarjetas */
+    flex-wrap: wrap; /* Permite que las tarjetas se envuelvan si no caben en una sola fila */
+    justify-content: space-around; /* Distribuye uniformemente las tarjetas en la fila */
+  }
 .card {
     margin: 10px;
-    max-width: 300px; 
+    max-width: 400px; 
     border-radius: 10px; 
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
-    overflow: hidden; 
-    display: flex; 
-    flex-direction: column; 
-  }
+}
 
-  .card a {
-    display: block; /* Para que el enlace ocupe todo el ancho de la tarjeta */
+.card:hover {
+    max-width: 405px;      
+}
+
+.card a {
+    display: block; 
     text-align: center; 
     background-color: #007bff; 
     color: #fff; 
     padding: 10px; 
     text-decoration: none; 
     border-radius: 0 0 10px 10px; 
-  }
-  
+}
+
+.card img {
+    width: 100%; /* Ajusta la imagen para llenar el contenedor de la tarjeta */
+    border-radius: 10px 10px 0 0; /* Define la curvatura de los bordes de la imagen */
+}
