@@ -87,3 +87,25 @@ footer a {
 footer a:hover {
     color: #000000;
 }
+
+/*INICIO DE CONFIGURACION DE LAS CARDS*/
+.card {
+    margin: 10px;
+    max-width: 300px; 
+    border-radius: 10px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+  }
+
+  .card a {
+    display: block; /* Para que el enlace ocupe todo el ancho de la tarjeta */
+    text-align: center; 
+    background-color: #007bff; 
+    color: #fff; 
+    padding: 10px; 
+    text-decoration: none; 
+    border-radius: 0 0 10px 10px; 
+  }
+  
