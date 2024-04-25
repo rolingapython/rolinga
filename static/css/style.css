@@ -119,3 +119,19 @@ footer a:hover {
     width: 100%; /* Ajusta la imagen para llenar el contenedor de la tarjeta */
     border-radius: 10px 10px 0 0; /* Define la curvatura de los bordes de la imagen */
 }
+
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 300px; /* Ajusta el ancho según tus preferencias */
+  }
+  input[type="text"]::placeholder {
+    color: #999; /* Cambia el color del texto del marcador de posición */
+  }
+  input[type="text"]::placeholder {
+    color: #999; /* Cambia el color del texto del marcador de posición */
+  }
+  
