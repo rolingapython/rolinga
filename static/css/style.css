@@ -89,7 +89,7 @@ footer a:hover {
 }
 
 /*INICIO DE CONFIGURACION DE LAS CARDS*/
-.container {
+#container {
     display: flex; /* Utiliza Flexbox para distribuir las tarjetas */
     flex-wrap: wrap; /* Permite que las tarjetas se envuelvan si no caben en una sola fila */
     justify-content: space-around; /* Distribuye uniformemente las tarjetas en la fila */
