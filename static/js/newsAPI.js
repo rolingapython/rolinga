@@ -48,24 +48,3 @@ fetch(apiURL, {options}).then(response => {
     }).catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });;
-
-
-
-// const url = 'https://newsapi90.p.rapidapi.com/search?query=music&language=es-ES&region=ES';
-// // const options = {
-// // 	method: 'GET',
-// // 	headers: {
-// // 		'X-RapidAPI-Key': '8241c54456mshb01f4f96270f2eep172a1cjsnfe542fdb045c',
-// // 		'X-RapidAPI-Host': 'newsapi90.p.rapidapi.com'
-// // 	}
-// // };
-
-// fetch(url, {options})
-
-// try {
-// 	const response = await fetch(url, options);
-// 	const result = await response.text();
-// 	// console.log(result);
-// } catch (error) {
-// 	console.error(error);
-// }
