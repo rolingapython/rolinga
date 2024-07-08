@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, send_from_directory
-
-
+from dataclasses import dataclass
+from src.application.dto.NoticiasDTO import NoticiasDTO
+from src.application.dto.EventDTO import EventDTO
 app = Flask(__name__, static_folder='static', static_url_path='')
 
 @app.route('/')
@@ -17,7 +18,22 @@ def testPoint():
 
 @app.route("/api/events",methods=['GET'])
 def events():
-    return jsonify({"events":[1,2,3,4,5]})
+    retorno = [
+        EventDTO(name="nombreEvento1",location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar"),
+        EventDTO(name="nombreEvento1",location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar"),
+        EventDTO(name="nombreEvento1",location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar")
+    ]
+    return jsonify({"data":retorno})
+
+@app.route("/api/news",methods=['GET'])
+def news():
+    retorno = [
+    NoticiasDTO(title="Noticia 1",image="imagen1.jpg",description="Descripción de la noticia 1",link="http://enlace1.com",publisher="Publicador 1"),
+    NoticiasDTO(title="Noticia 2",image="imagen2.jpg",description="Descripción de la noticia 2", link="http://enlace2.com",publisher="Publicador 2"),
+    NoticiasDTO(title="Noticia 3",image="imagen3.jpg",description="Descripción de la noticia 3",link="http://enlace3.com",publisher="Publicador 3")
+    ]
+    return jsonify({"data":retorno})
+
 
 
 if __name__ == '__main__':

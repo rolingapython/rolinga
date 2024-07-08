@@ -1,4 +1,4 @@
-fetch('./static/js/api.json', {
+fetch('./api/events', {
   method: 'GET'
 })
   .then(response => {
@@ -10,16 +10,16 @@ fetch('./static/js/api.json', {
   .then(cardsData => {
     
     const container = document.getElementById("container");
-    const firstTen = cardsData.data.slice(1,1000);   
-    console.log(firstTen); 
+    const firstTen = cardsData.data.slice(0,1000);   
+
     const characterCardHTML = firstTen.map(card => {
       return `
       <div class="card" id="firstCard">
       <img src="${card.image}">
       <h4>${card.name}</h4>
-      <h4>Lugar :${card.location.name}</h4>
+      <h4>Lugar :${card.location}</h4>
       <div>${card.description}</div>
-      <a href="${card.image}">Leer más</a>
+      <a href="${card.link}">Leer más</a>
       </div>
       `;
     }).join('');
