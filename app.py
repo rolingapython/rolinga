@@ -2,7 +2,14 @@ from flask import Flask, jsonify, render_template, send_from_directory
 from dataclasses import dataclass
 from src.application.dto.NoticiasDTO import NoticiasDTO
 from src.application.dto.EventDTO import EventDTO
+from flaskext.mysql import MySQL
 app = Flask(__name__, static_folder='static', static_url_path='')
+mysql = MySQL(app)
+
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "user"
+app.config["MYSQL_PASSWORD"] = "password"
+app.config["MYSQL_DB"] = "mydatabase"
 
 @app.route('/')
 def index():
@@ -18,6 +25,18 @@ def testPoint():
 
 @app.route("/api/events",methods=['GET'])
 def events():
+    sql = "SELECT 1"
+    conn = mysql.connection
+    cursor = conn.cursor()
+    cursor.execute(sql)
+
+    db_peliculas = cursor.fetchall()
+    
+    for pelicula in db_peliculas:
+        print(pelicula)
+
+    cursor.close()
+
     retorno = [
         EventDTO(name="nombreEvento1",location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar"),
         EventDTO(name="nombreEvento1",location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar"),
@@ -26,7 +45,7 @@ def events():
     return jsonify({"data":retorno})
 
 @app.route("/api/news",methods=['GET'])
-def news():
+def news():  
     retorno = [
     NoticiasDTO(title="Noticia 1",image="imagen1.jpg",description="Descripción de la noticia 1",link="http://enlace1.com",publisher="Publicador 1"),
     NoticiasDTO(title="Noticia 2",image="imagen2.jpg",description="Descripción de la noticia 2", link="http://enlace2.com",publisher="Publicador 2"),
