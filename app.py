@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template, send_from_directory
 from dataclasses import dataclass
 from src.application.dto.NoticiasDTO import NoticiasDTO
 from src.application.dto.EventDTO import EventDTO
-from flaskext.mysql import MySQL
+from flask_mysqldb import MySQL
 app = Flask(__name__, static_folder='static', static_url_path='')
 mysql = MySQL(app)
 
