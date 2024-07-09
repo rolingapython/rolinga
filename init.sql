@@ -7,6 +7,17 @@ CREATE TABLE events (
     link VARCHAR(255)
 );
 
+CREATE TABLE IF NOT EXISTS News (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    image VARCHAR(255),
+    description TEXT,
+    link VARCHAR(255),
+    publisher VARCHAR(255)
+);
+
+
+
 INSERT INTO events (name, location, description, image, link) VALUES
     ('Ed Sheeran Concert', 'Principality Stadium', 'Ed Sheeran live at Principality Stadium', 'https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar', 'https://www.principalitystadium.wales/'),
     ('Coldplay Live', 'Wembley Stadium', 'Coldplay performing live at Wembley Stadium', 'https://images.sk-static.com/images/media/profile_images/artists/287767/huge_avatar', 'https://www.wembleystadium.com/'),
@@ -43,3 +54,33 @@ INSERT INTO events (name, location, description, image, link) VALUES
     ('Creamfields', 'Daresbury, UK', 'Annual dance music festival in the UK', 'https://images.sk-static.com/images/media/profile_images/artists/282292/huge_avatar', 'https://www.creamfields.com/'),
     ('Latitude Festival', 'Suffolk, UK', 'Annual music and performing arts festival in Suffolk, UK', 'https://images.sk-static.com/images/media/profile_images/artists/282265/huge_avatar', 'https://www.latitudefestival.com/'),
     ('End of the Road Festival', 'Larmer Tree Gardens, UK', 'Annual music festival in the UK', 'https://images.sk-static.com/images/media/profile_images/artists/282301/huge_avatar', 'https://endoftheroadfestival.com/');
+
+
+INSERT INTO News (title, image, description, link, publisher) VALUES
+('Concierto de Coldplay en Buenos Aires', 'https://random.imagecdn.app/220/220?1', 'Coldplay ofrecerá un concierto en el Estadio River Plate como parte de su gira mundial.', 'https://www.coldplay.com/buenosaires', 'Rolling Stone'),
+('Lanzamiento del iPhone 15', 'https://random.imagecdn.app/220/220?2', 'Apple ha anunciado el lanzamiento del nuevo iPhone 15 con mejoras significativas en cámara y rendimiento.', 'https://www.apple.com/iphone-15', 'TechCrunch'),
+('Maratón de Nueva York 2024', 'https://random.imagecdn.app/220/220?3', 'La Maratón de Nueva York 2024 contará con más de 50,000 corredores de todo el mundo.', 'https://www.nyrr.org/maraton2024', 'The New York Times'),
+('Festival de Cine de Cannes', 'https://random.imagecdn.app/220/220?4', 'El Festival de Cine de Cannes presentará una selección de las mejores películas de cine independiente.', 'https://www.festival-cannes.com', 'Variety'),
+('Feria del Libro de Madrid', 'https://random.imagecdn.app/220/220?5', 'La Feria del Libro de Madrid contará con la participación de más de 300 editoriales y autores.', 'https://www.ferialibromadrid.com', 'El País'),
+('Conferencia de Desarrolladores de Google I/O', 'https://random.imagecdn.app/220/220?6', 'Google presentará sus últimas innovaciones y productos en la conferencia anual de desarrolladores.', 'https://events.google.com/io', 'Wired'),
+('Exposición de Arte Contemporáneo en MoMA', 'https://random.imagecdn.app/220/220?7', 'El Museo de Arte Moderno de Nueva York inaugurará una exposición de arte contemporáneo con obras de artistas emergentes.', 'https://www.moma.org/exhibitions/2024', 'ArtNews'),
+('Concierto de BTS en Seúl', 'https://random.imagecdn.app/220/220?8', 'La banda surcoreana BTS ofrecerá un concierto en el Estadio Olímpico de Seúl como parte de su tour mundial.', 'https://www.bts-official.com/seoul2024', 'Billboard'),
+('Cumbre del Cambio Climático en Glasgow', 'https://random.imagecdn.app/220/220?9', 'Líderes mundiales se reunirán en Glasgow para discutir medidas contra el cambio climático.', 'https://www.un.org/climatechange', 'BBC News'),
+('Lanzamiento del nuevo Tesla Model S', 'https://random.imagecdn.app/220/220?10', 'Tesla ha presentado su nuevo Model S con mejoras en autonomía y tecnología de conducción autónoma.', 'https://www.tesla.com/models', 'The Verge'),
+('Final de la Champions League 2024', 'https://random.imagecdn.app/220/220?11', 'La final de la Champions League 2024 se jugará en el Estadio de Wembley.', 'https://www.uefa.com/championsleague/final', 'ESPN'),
+('Conferencia Mundial de IA en San Francisco', 'https://random.imagecdn.app/220/220?12', 'Expertos en inteligencia artificial se reunirán en San Francisco para discutir avances en la tecnología.', 'https://www.aiconference.com', 'MIT Technology Review'),
+('Festival de Música Coachella', 'https://random.imagecdn.app/220/220?13', 'El Festival de Música Coachella contará con presentaciones de artistas de renombre mundial.', 'https://www.coachella.com', 'Rolling Stone'),
+('Semana de la Moda de París', 'https://random.imagecdn.app/220/220?14', 'La Semana de la Moda de París presentará las últimas colecciones de los diseñadores más importantes.', 'https://www.parisfashionweek.com', 'Vogue'),
+('Gran Premio de Mónaco de Fórmula 1', 'https://random.imagecdn.app/220/220?15', 'El Gran Premio de Mónaco es uno de los eventos más esperados del calendario de Fórmula 1.', 'https://www.formula1.com/races/monaco', 'Sky Sports'),
+('Salón del Automóvil de Ginebra', 'https://random.imagecdn.app/220/220?16', 'El Salón del Automóvil de Ginebra presentará las últimas novedades en la industria automotriz.', 'https://www.gims.swiss', 'Autocar'),
+('Exposición Universal de Osaka 2025', 'https://random.imagecdn.app/220/220?17', 'La Exposición Universal de Osaka 2025 se centrará en la innovación y la sostenibilidad.', 'https://www.expo2025.osaka', 'NHK World'),
+('Conferencia de Seguridad de Múnich', 'https://random.imagecdn.app/220/220?18', 'Líderes globales se reunirán en Múnich para discutir temas de seguridad internacional.', 'https://www.securityconference.de', 'Deutsche Welle'),
+('Festival Internacional de Jazz de Montreal', 'https://random.imagecdn.app/220/220?19', 'El Festival Internacional de Jazz de Montreal contará con actuaciones de los mejores músicos de jazz del mundo.', 'https://www.montrealjazzfest.com', 'JazzTimes'),
+('Lanzamiento del cohete SpaceX Starship', 'https://random.imagecdn.app/220/220?20', 'SpaceX lanzará su cohete Starship en una misión a Marte.', 'https://www.spacex.com/missions/mars', 'Space.com'),
+('Premios Oscar 2024', 'https://random.imagecdn.app/220/220?21', 'La ceremonia de los Premios Oscar 2024 premiará a las mejores producciones cinematográficas del año.', 'https://www.oscars.org', 'The Hollywood Reporter'),
+('Cumbre de Tecnología en Las Vegas', 'https://random.imagecdn.app/220/220?22', 'Las Vegas será la sede de la Cumbre de Tecnología donde se presentarán las últimas innovaciones.', 'https://www.techsummit.com', 'TechRadar'),
+('Feria Internacional del Turismo en Berlín', 'https://random.imagecdn.app/220/220?23', 'La Feria Internacional del Turismo en Berlín reunirá a los principales actores de la industria turística.', 'https://www.itb-berlin.com', 'Condé Nast Traveler'),
+('Festival de Teatro de Edimburgo', 'https://random.imagecdn.app/220/220?24', 'El Festival de Teatro de Edimburgo presentará una variedad de obras de teatro y performances.', 'https://www.edfringe.com', 'The Guardian'),
+('Lanzamiento del nuevo álbum de Adele', 'https://random.imagecdn.app/220/220?25', 'Adele lanzará su esperado nuevo álbum en 2024.', 'https://www.adele.com', 'Billboard'),
+('Feria de Electrónica de Consumo en Las Vegas', 'https://random.imagecdn.app/220/220?26', 'La Feria de Electrónica de Consumo en Las Vegas presentará las últimas innovaciones en tecnología.', 'https://www.ces.tech', 'CNET'),
+('Cumbre Global de Emprendedores en Silicon Valley', 'https://random.imagecdn.app/220/220?27', 'Emprendedores de todo el mundo se reunirán en Silicon Valley para discutir nuevas ideas y oportunidades de negocio.', 'https://www.entrepreneurssummit.com', 'Forbes');

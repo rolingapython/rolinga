@@ -29,32 +29,38 @@ def events():
     conn = mysql.connection
     cursor = conn.cursor()
     cursor.execute(sql)
-
-    db_peliculas = cursor.fetchall()
-    
+    db_events = cursor.fetchall()    
     retorno = []
-    for pelicula in db_peliculas:
+    for events in db_events:
         evento = EventDTO(
-        name=pelicula[1],
-        location=pelicula[2],
-        description=pelicula[3],
-        image=pelicula[4],
-        link=pelicula[5]
+        name=events[1],
+        location=events[2],
+        description=events[3],
+        image=events[4],
+        link=events[5]
         )
         retorno.append(evento)
-
-    cursor.close()
-
-    
+    cursor.close()    
     return jsonify({"data":retorno})
 
 @app.route("/api/news",methods=['GET'])
 def news():  
-    retorno = [
-    NoticiasDTO(title="Noticia 1",image="imagen1.jpg",description="Descripción de la noticia 1",link="http://enlace1.com",publisher="Publicador 1"),
-    NoticiasDTO(title="Noticia 2",image="imagen2.jpg",description="Descripción de la noticia 2", link="http://enlace2.com",publisher="Publicador 2"),
-    NoticiasDTO(title="Noticia 3",image="imagen3.jpg",description="Descripción de la noticia 3",link="http://enlace3.com",publisher="Publicador 3")
-    ]
+    sql = "SELECT id,title,image,description,link,publisher FROM News;"
+    conn = mysql.connection
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    db_events = cursor.fetchall()    
+    retorno = []
+    for events in db_events:
+        evento = NoticiasDTO(
+        title=events[1],
+        image=events[2],
+        description=events[3],
+        link=events[4],
+        publisher=events[5]
+        )
+        retorno.append(evento)
+    cursor.close()    
     return jsonify({"data":retorno})
 
 
