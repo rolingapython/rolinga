@@ -1,12 +1,17 @@
-FROM alpine:3.10
+FROM python:3.11.9-alpine3.20
 
-RUN apk add --no-cache python3-dev \
-    mariadb-dev \
-    && pip3 install --upgrade pip
-
-WORKDIR /app
 COPY . /app
 
-RUN pip --no-cache-dir install -r requirements.txt
+WORKDIR /app
 
-CMD ["python3","app.py"]
+RUN apk add --no-cache bash gcc musl-dev libffi-dev openssl-dev \
+    mariadb-dev \
+    mysql-client \
+    pkgconfig \
+    && pip install --upgrade pip && pip install -r requirements.txt
+
+COPY . /app
+
+ENTRYPOINT [ "python" ]
+
+CMD ["app.py" ]

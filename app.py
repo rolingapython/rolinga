@@ -6,7 +6,7 @@ from flask_mysqldb import MySQL
 app = Flask(__name__, static_folder='static', static_url_path='')
 mysql = MySQL(app)
 
-app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_HOST"] = "database"
 app.config["MYSQL_USER"] = "user"
 app.config["MYSQL_PASSWORD"] = "password"
 app.config["MYSQL_DB"] = "mydatabase"
@@ -25,23 +25,20 @@ def testPoint():
 
 @app.route("/api/events",methods=['GET'])
 def events():
-    sql = "SELECT 1"
+    sql = "SELECT 'El pepe';"
     conn = mysql.connection
     cursor = conn.cursor()
     cursor.execute(sql)
 
     db_peliculas = cursor.fetchall()
     
+    retorno = []
     for pelicula in db_peliculas:
-        print(pelicula)
+        retorno = [EventDTO(name=pelicula[0],location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar")]
 
     cursor.close()
 
-    retorno = [
-        EventDTO(name="nombreEvento1",location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar"),
-        EventDTO(name="nombreEvento1",location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar"),
-        EventDTO(name="nombreEvento1",location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar")
-    ]
+    
     return jsonify({"data":retorno})
 
 @app.route("/api/news",methods=['GET'])
