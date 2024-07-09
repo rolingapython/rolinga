@@ -25,7 +25,7 @@ def testPoint():
 
 @app.route("/api/events",methods=['GET'])
 def events():
-    sql = "SELECT 'El pepe';"
+    sql = "SELECT id,name,location,description,image,link FROM events;"
     conn = mysql.connection
     cursor = conn.cursor()
     cursor.execute(sql)
@@ -34,7 +34,14 @@ def events():
     
     retorno = []
     for pelicula in db_peliculas:
-        retorno = [EventDTO(name=pelicula[0],location="Ed Sheeran at Principality Stadium",description="Ed Sheeran at Principality Stadium",image="https://images.sk-static.com/images/media/profile_images/artists/2083334/huge_avatar",link="http://google.com.ar")]
+        evento = EventDTO(
+        name=pelicula[1],
+        location=pelicula[2],
+        description=pelicula[3],
+        image=pelicula[4],
+        link=pelicula[5]
+        )
+        retorno.append(evento)
 
     cursor.close()
 
