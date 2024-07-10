@@ -3,14 +3,14 @@ CREATE TABLE events (
     name VARCHAR(255) NOT NULL,
     location VARCHAR(255),
     description TEXT,
-    image TEXT,
+    image LONGTEXT,
     link VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS News (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    image TEXT,
+    image LONGTEXT,
     description TEXT,
     link VARCHAR(255),
     publisher VARCHAR(255)

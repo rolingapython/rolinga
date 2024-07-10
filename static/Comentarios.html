@@ -86,7 +86,7 @@
             name: document.getElementById('name').value,
             location: document.getElementById('location').value,
             description: document.getElementById('description').value,
-            image: event.target.result, // Aquí se accede a reader.result dentro de onload
+            image: event.target.result, 
             link: document.getElementById('link').value
         };        
         console.log(data);         
@@ -107,7 +107,7 @@
         });
     };
 
-    reader.readAsDataURL(file); // Inicia la lectura del contenido del archivo como una URL base64
+    reader.readAsDataURL(file); 
     });
     </script>
 </body>
