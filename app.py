@@ -110,7 +110,7 @@ def updatenews(id):
 
 
 
-@app.route('/api/deletenews/<int:id>', methods=['DELETE'])
+@app.route('/api/deleteevent/<int:id>', methods=['DELETE'])
 def deletenews(id):
     cursor = mysql.connection.cursor()
     sql = "DELETE FROM events WHERE id = %s"
