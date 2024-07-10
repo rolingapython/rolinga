@@ -33,6 +33,7 @@ def events():
     retorno = []
     for events in db_events:
         evento = EventDTO(
+        id = events[0],
         name=events[1],
         location=events[2],
         description=events[3],
@@ -53,6 +54,7 @@ def news():
     retorno = []
     for events in db_events:
         evento = NoticiasDTO(
+        id = events[0],
         title=events[1],
         image=events[2],
         description=events[3],
@@ -68,6 +70,7 @@ def news():
 def createnews():
     data = request.json
     event_dto = EventDTO(
+        id =0,
         name=data.get('name'),  
         location=data.get('location'),
         description=data.get('description'),
@@ -80,6 +83,44 @@ def createnews():
     mysql.connection.commit()
     cursor.close()
     return jsonify({'message': 'Evento creado correctamente'})
+
+@app.route('/api/updatenews/<int:id>', methods=['PUT'])
+def updatenews(id):
+    data = request.json
+    cursor = mysql.connection.cursor()
+    sql = """
+    UPDATE events 
+    SET name = %s, location = %s, description = %s, image = %s, link = %s 
+    WHERE id = %s
+    """
+    result = cursor.execute(sql, (
+        data.get('name'),
+        data.get('location'),
+        data.get('description'),
+        data.get('image'),
+        data.get('link'),
+        id
+    ))
+    mysql.connection.commit()
+    cursor.close()
+    if result:
+        return jsonify({'message': f'Evento con ID {id} actualizado correctamente'})
+    else:
+        return jsonify({'message': f'No se encontró un evento con ID {id}'}), 404
+
+
+
+@app.route('/api/deletenews/<int:id>', methods=['DELETE'])
+def deletenews(id):
+    cursor = mysql.connection.cursor()
+    sql = "DELETE FROM events WHERE id = %s"
+    result = cursor.execute(sql, (id,))
+    mysql.connection.commit()
+    cursor.close()
+    if result:
+        return jsonify({'message': f'Evento con ID {id} eliminado correctamente'})
+    else:
+        return jsonify({'message': f'No se encontró un evento con ID {id}'}), 404
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=4000, debug=False)
