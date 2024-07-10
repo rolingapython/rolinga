@@ -64,12 +64,22 @@ def news():
     return jsonify({"data":retorno})
 
 
-@app.route('/api/news', methods=['POST'])
-def ejemplo_post():
-    # Aquí manejas la lógica del POST
-    data = request.json  # Accede a los datos enviados en formato JSON
-    # Procesa los datos según tu aplicación
-    return jsonify({'message': 'POST recibido correctamente', 'data': data})
+@app.route('/api/createnews', methods=['POST'])
+def createnews():
+    data = request.json
+    event_dto = EventDTO(
+        name=data.get('name'),  
+        location=data.get('location'),
+        description=data.get('description'),
+        image=data.get('image'),
+        link=data.get('link')
+    )
+    cursor = mysql.connection.cursor()
+    sql = "INSERT INTO events (name, location, description, image, link) VALUES (%s, %s, %s, %s, %s)"
+    cursor.execute(sql, (event_dto.name, event_dto.location, event_dto.description, event_dto.image, event_dto.link))
+    mysql.connection.commit()
+    cursor.close()
+    return jsonify({'message': 'Evento creado correctamente'})
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=4000, debug=True)
+    app.run(host="0.0.0.0",port=4000, debug=False)
