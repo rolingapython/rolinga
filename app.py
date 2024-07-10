@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, send_from_directory
+from flask import Flask, jsonify, render_template, send_from_directory, request,redirect, url_for
 from dataclasses import dataclass
 from src.application.dto.NoticiasDTO import NoticiasDTO
 from src.application.dto.EventDTO import EventDTO
@@ -12,8 +12,8 @@ app.config["MYSQL_PASSWORD"] = "password"
 app.config["MYSQL_DB"] = "mydatabase"
 
 @app.route('/')
-def index():
-    return send_from_directory(app.static_url_path, 'index.html')
+def default_page():
+    return redirect(url_for('static', filename='index.html'))
 
 @app.route('/<path:path>')
 def serve_static_files(path):
@@ -64,6 +64,12 @@ def news():
     return jsonify({"data":retorno})
 
 
+@app.route('/api/news', methods=['POST'])
+def ejemplo_post():
+    # Aquí manejas la lógica del POST
+    data = request.json  # Accede a los datos enviados en formato JSON
+    # Procesa los datos según tu aplicación
+    return jsonify({'message': 'POST recibido correctamente', 'data': data})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=4000, debug=True)
