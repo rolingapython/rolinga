@@ -20,7 +20,7 @@
                 <div class="menu"><a href="index.html">
                     <img src="img/LOGOrolinga.png" height="90" alt=""></a>
                 </div>
-            <ul >
+            <ul>
                 <li><a href="index.html">Eventos</a></li>
                 <li><a href="Noticias.html">Noticias</a></li>
                 <li><a href="Comentarios.html">Comentarios</a></li>
@@ -28,29 +28,34 @@
             </ul>
         </nav>
     </header>
-    <main >
-        <form action="link" method="post">
+    <main>
+        <form id="create-event-form" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="name">Nombre:</label>
-                <input type="text" class="form-control" id="name" placeholder="Ingresa tu nombre" required>
+                <label for="name">Nombre del Evento:</label>
+                <input type="text" class="form-control" id="name" placeholder="Ingresa el nombre del evento" required>
             </div>
             <div class="form-group">
-                <label for="lastname">Apellido:</label>
-                <input type="text" class="form-control" id="lastname" placeholder="Ingresa tu apellido">
+                <label for="location">Ubicación:</label>
+                <input type="text" class="form-control" id="location" placeholder="Ingresa la ubicación del evento" required>
             </div>
             <div class="form-group">
-                <label for="mail">Correo Electrónico:</label>
-                <input type="email" class="form-control" id="mail" placeholder="Ingresa tu correo electrónico">
+                <label for="description">Descripción:</label>
+                <textarea class="form-control" id="description" placeholder="Ingresa la descripción del evento" required></textarea>
             </div>
             <div class="form-group">
-                <label for="coments">Dejanos tu comentario:</label>
-                <textarea class="form-control" id="coments" placeholder="Ingresa tu mensaje..." name="coments" rows="5"></textarea>
+                <label for="image">Imagen del Evento:</label>
+                <input type="file" class="form-control" id="image" required>
+            </div>
+            <div class="form-group">
+                <label for="link">Enlace del Evento:</label>
+                <input type="text" class="form-control" id="link" placeholder="Ingresa el enlace del evento" required>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Crear Evento</button>
             </div>
         </form>
-    </main>    
+        <div id="message" class="mt-3"></div>
+    </main>
     <footer>
         <a href="">Terminos y condiciones</a>
         <a href="">Preguntas frecuentes</a>
@@ -61,7 +66,49 @@
             <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
         </div>
         <p>2024 Rolinga. Todos los derechos reservados.</p>
-
     </footer>
+    <script>
+       document.getElementById('create-event-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const fileInput = document.getElementById('image');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        console.error('No se seleccionó ningún archivo.');
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        const data = {
+            name: document.getElementById('name').value,
+            location: document.getElementById('location').value,
+            description: document.getElementById('description').value,
+            image: event.target.result, // Aquí se accede a reader.result dentro de onload
+            link: document.getElementById('link').value
+        };        
+        console.log(data);         
+        fetch('/api/createnews', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); 
+            
+        })
+        .catch(error => {
+            console.error('Error al enviar los datos:', error);            
+        });
+    };
+
+    reader.readAsDataURL(file); // Inicia la lectura del contenido del archivo como una URL base64
+    });
+    </script>
 </body>
 </html>
